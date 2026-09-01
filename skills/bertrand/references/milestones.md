@@ -53,6 +53,4 @@ Plan the work and commit to what matters most.
 
 ## What a milestone review means
 
-At milestone *n*, sections from earlier milestones are fair game and should have improved. A team
-that has not touched G.3 since milestone 1 has either got it right or stopped thinking about it,
-and the difference is worth a question.
+_TODO: how earlier milestones' sections should be treated at a later one._

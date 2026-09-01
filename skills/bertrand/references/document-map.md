@@ -91,19 +91,12 @@ endif::[]
 | P.6 | Risk and mitigation analysis | `parts/project/P6.adoc` | `<<p6>>` | 1 |
 | P.7 | Requirements process and report | `parts/project/P7.adoc` | `<<p7>>` | 1 |
 
-## Boundaries the template draws on purpose
+## Section boundaries
 
-These pairs are the most common source of misplaced material. The template's own guidance defines
-each split; knowing them is most of what section-boundary review requires.
+The template deliberately separates concerns across its four books, and its own `ifdef::env-draft[]`
+guidance states where each concern belongs. Misplaced material is a common finding, so the pairs
+that look alike belong here.
 
-| These look alike | The difference the template draws |
-|---|---|
-| G.4 vs S.2 | G.4 is a capsule overview of behaviour; S.2 is the detailed specification of it. |
-| G.5 vs S.4 | G.5 is main usage paths in user terms, no special cases; S.4 may refer to system components and covers special and erroneous cases. |
-| G.6 vs P.6 | G.6 scopes the *system* (what it need not do); P.6 analyses risks to the *project*. |
-| E.2 vs S.3 vs P.5 | E.2 is interfaces the outside world offers the system; S.3 is interfaces the system offers outward; P.5 is technology the project needs to build it. |
-| E.3 vs E.4 | E.3 is imposed and non-negotiable; E.4 is chosen and assumed, to simplify the system. |
-| E.3/E.4 vs E.5 | E.3 and E.4 are the environment acting on the system; E.5 is the system acting on the environment. |
-| E.6 vs E.5 | E.6 is what must be preserved across operations; E.5 is what is changed by them. |
-| S.5 vs P.3/P.4 | S.5 prioritises functionality by criticality; P.3 and P.4 schedule the work. |
-| P.2 vs E.3 | P.2 is a technical choice imposed by policy on the project; E.3 is a restriction imposed by the environment. |
+_TODO: the boundary table — which pairs of sections teams confuse, and the distinction the
+template draws between them. Source it from the guidance blocks in the section files rather than
+from memory._

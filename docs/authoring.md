@@ -26,9 +26,9 @@ Criteria live in `skills/<persona>/references/criteria/`:
 - `goals.md`, `environment.md`, `system.md`, `project.md` — one `##` entry per section, in
   document order, each carrying its file path and milestone.
 
-These are **per-persona and hand-written**: bertrand and peggy look at the same section for
-different things, so they do not share criteria. `make check` verifies that every persona has an
-entry for all 26 sections; it does not check that the entries say anything, so `_TODO_` passes.
+These are **per-persona and hand-written**: each persona looks at the same section for different
+things, so they do not share criteria. `make check` verifies that every persona has an entry for
+all 26 sections; it does not check that the entries say anything, so `_TODO_` passes.
 
 ## Adding a persona
 
@@ -38,7 +38,7 @@ entry for all 26 sections; it does not check that the entries say anything, so `
    `description` that says what this persona looks for and when a team should reach for it — it is
    what the agent matches against, and it is what students see in a list.
 3. Keep the section skeleton (`Who I am` / `What I will not do` / `How I start` / `How I work
-   through a section` / `Where my criteria live`). It is what makes the personas feel like one
+   through a section` / `Where my criteria live`). It is what keeps the personas recognisably one
    family.
 4. Restate the house rules inline in `What I will not do`. They must hold even if `references/`
    is never loaded.
@@ -50,9 +50,12 @@ Nothing else needs touching — the plugin manifest points at the repo root, so 
 
 ## The rules that are not per-persona
 
-`shared/house-rules.md` binds every persona. Its first rule — never write the document — is the
-reason this tool can be handed to a graded cohort. Changing it changes what the tool is; changing
-the rest is ordinary editing.
+`shared/house-rules.md` binds every persona and is synced into all of them. Two of its rules are
+fixed by design — the personas never write the document, and their output is questions and
+critique only. The rest of the file is a set of stubs to fill in.
+
+Each persona also restates the non-negotiables inline in its `SKILL.md`, deliberately, so they
+hold even if `references/` is never loaded. Keep the two in step when you edit either.
 
 ## Validation
 

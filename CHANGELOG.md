@@ -7,23 +7,26 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+Nothing released yet. The repository currently holds the scaffolding for a catalogue of reviewer
+personas that question a student team about a requirements document written with
+`cas-handbook-req-template`; the personas' instructions and criteria are stubs.
+
 ### Added
 
-- Two reviewer personas for a requirements document written with `cas-handbook-req-template`:
-  **bertrand**, who challenges precision, justification and section boundaries, and **peggy**, who
-  challenges the framing and surfaces the alternatives a team closed on too early. Both work
-  through the AsciiDoc sources one section at a time, in conversation, and produce no report.
-- A binding rule, shared by every persona, that they never write, draft or reword any part of the
-  student's document — only ask questions and criticise. Asked directly, they refuse and return a
-  question.
-- Installation on Claude Code, Codex, Cursor, Gemini CLI and GitHub Copilot, via `gh skill
+- Repository structure for a catalogue of reviewer-persona [Agent Skills](https://agentskills.io):
+  `skills/<persona>/` self-contained and individually installable, `shared/` as the single source
+  of truth for material every persona must agree on, and `scripts/sync.py` materialising one into
+  the other so a single-persona install stays whole.
+- Two persona slots, **bertrand** and **peggy**, with a shared body skeleton and criteria
+  scaffolded per section (26 sections × 2 personas, all `_TODO_`).
+- The section inventory and milestone split of the upstream template, transcribed and checkable
+  against it with `make check-template`.
+- Installation on Claude Code, Codex, Cursor, Gemini CLI and GitHub Copilot — via `gh skill
   install`, via the Claude Code plugin marketplace (`/plugin marketplace add
-  ace-lectures/req-audit`), or by symlink. The personas are Agent Skills; the same folder works
+  ace-lectures/req-audit`), or by symlink — with per-agent instructions. One skill folder works
   everywhere without modification.
-- Per-agent installation instructions, student usage notes, and instructor notes on adding a
-  persona or updating for a new term.
-
-Review criteria are scaffolded per section and per persona but not yet written; the personas will
-get sharper as those are filled in.
+- `make check` (in CI): validates skill frontmatter, per-section criteria coverage, freshness of
+  the synced copies, the section inventory, the plugin manifests, and that no agent product name
+  appears inside a skill body.
 
 [Unreleased]: https://github.com/ace-lectures/req-audit/compare/main...HEAD
