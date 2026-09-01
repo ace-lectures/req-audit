@@ -1,0 +1,11 @@
+{
+  "name": "req-audit",
+  "description": "Reviewer personas that question a student team about their CS/SE 3RA3 requirements document, and never write it for them.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Sébastien Mosser",
+    "url": "https://github.com/ace-lectures"
+  },
+  "homepage": "https://github.com/ace-lectures/req-audit",
+  "license": "MIT"
+}

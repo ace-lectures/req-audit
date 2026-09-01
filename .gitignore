@@ -1,0 +1,9 @@
+# Working notes for coding agents, deliberately not shared with students.
+CLAUDE.md
+
+# Python
+__pycache__/
+*.pyc
+
+# macOS
+.DS_Store

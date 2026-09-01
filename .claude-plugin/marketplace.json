@@ -1,0 +1,14 @@
+{
+  "name": "ace-lectures",
+  "owner": {
+    "name": "Sébastien Mosser",
+    "url": "https://github.com/ace-lectures"
+  },
+  "plugins": [
+    {
+      "name": "req-audit",
+      "source": ".",
+      "description": "Reviewer personas for a requirements document written with the cas-handbook-req-template."
+    }
+  ]
+}
