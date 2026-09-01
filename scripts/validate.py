@@ -21,6 +21,9 @@ SHARED = ROOT / "shared"
 SKILLS = ROOT / "skills"
 PLUGIN = ROOT / ".claude-plugin"
 
+SCOPE_KEY = "req-audit-scope"
+SCOPES = {"section", "document"}
+
 BOOKS = {"G": "goals", "E": "environment", "S": "system", "P": "project"}
 
 # Naming any of these inside a skill body would tie it to one agent. Docs and the Claude Code
@@ -38,7 +41,7 @@ def fail(where, message):
 
 
 def frontmatter(path):
-    """Parse the top-level keys of a SKILL.md YAML frontmatter block. No dependencies."""
+    """Parse the frontmatter of a SKILL.md. Handles block scalars and one level of nesting."""
     lines = path.read_text().splitlines()
     if not lines or lines[0].strip() != "---":
         return None
@@ -46,14 +49,23 @@ def frontmatter(path):
         end = lines.index("---", 1)
     except ValueError:
         return None
-    fields, key = {}, None
+    fields, key, mode = {}, None, None
     for line in lines[1:end]:
-        match = re.match(r'^([A-Za-z][\w-]*):\s*(.*)$', line)
-        if match:
-            key, value = match.group(1), match.group(2).strip()
-            fields[key] = "" if value in (">", ">-", "|", "|-") else value
+        top = re.match(r'^([A-Za-z][\w-]*):\s*(.*)$', line)
+        if top:
+            key, value = top.group(1), top.group(2).strip()
+            if value in (">", ">-", "|", "|-"):
+                fields[key], mode = "", "scalar"
+            elif value == "":
+                fields[key], mode = {}, "map"
+            else:
+                fields[key], mode = value, None
         elif key and line.strip():
-            fields[key] = (fields[key] + " " + line.strip()).strip()
+            nested = re.match(r'^\s+([A-Za-z][\w-]*):\s*(.*)$', line)
+            if mode == "map" and nested:
+                fields[key][nested.group(1)] = nested.group(2).strip()
+            elif mode == "scalar":
+                fields[key] = (fields[key] + " " + line.strip()).strip()
     return fields
 
 
@@ -89,23 +101,51 @@ def check_skill(skill, rows):
     for required in ("name", "description"):
         if not fields.get(required):
             fail(f"{rel}/SKILL.md", f"frontmatter is missing `{required}`")
-    if fields.get("name") and fields["name"] != skill.name:
-        fail(f"{rel}/SKILL.md", f"frontmatter name `{fields['name']}` != directory `{skill.name}`")
+
+    # Agent Skills spec constraints on name and description.
+    name = fields.get("name")
+    if isinstance(name, str) and name:
+        if name != skill.name:
+            fail(f"{rel}/SKILL.md", f"frontmatter name `{name}` != directory `{skill.name}`")
+        if not re.fullmatch(r'[a-z0-9]+(-[a-z0-9]+)*', name) or len(name) > 64:
+            fail(f"{rel}/SKILL.md",
+                 f"name `{name}` breaks the spec: 1-64 lowercase alphanumerics and single hyphens")
+    description = fields.get("description")
+    if isinstance(description, str) and len(description) > 1024:
+        fail(f"{rel}/SKILL.md", f"description is {len(description)} chars, the spec allows 1024")
+
+    metadata = fields.get("metadata")
+    scope = metadata.get(SCOPE_KEY) if isinstance(metadata, dict) else None
+    if scope not in SCOPES:
+        fail(f"{rel}/SKILL.md",
+             f"frontmatter needs `metadata.{SCOPE_KEY}` set to one of {sorted(SCOPES)}")
+        return
 
     criteria = skill / "references" / "criteria"
-    covered = set()
-    for letter, book in BOOKS.items():
-        path = criteria / f"{book}.md"
-        if not path.is_file():
-            fail(str(rel), f"missing references/criteria/{book}.md")
-            continue
-        covered |= set(re.findall(r'^## \(([GESP]\.\d)\)', path.read_text(), re.M))
-    if not (criteria / "cross-cutting.md").is_file():
-        fail(str(rel), "missing references/criteria/cross-cutting.md")
+    checks = skill / "references" / "checks"
 
-    for sid in (r[0] for r in rows):
-        if sid not in covered:
-            fail(str(rel), f"no criteria entry for section {sid}")
+    if scope == "section":
+        if checks.exists():
+            fail(str(rel), "section-scoped personas file material under references/criteria/, "
+                           "not references/checks/")
+        covered = set()
+        for letter, book in BOOKS.items():
+            path = criteria / f"{book}.md"
+            if not path.is_file():
+                fail(str(rel), f"missing references/criteria/{book}.md")
+                continue
+            covered |= set(re.findall(r'^## \(([GESP]\.\d)\)', path.read_text(), re.M))
+        if not (criteria / "cross-cutting.md").is_file():
+            fail(str(rel), "missing references/criteria/cross-cutting.md")
+        for sid in (r[0] for r in rows):
+            if sid not in covered:
+                fail(str(rel), f"no criteria entry for section {sid}")
+    else:
+        if criteria.exists():
+            fail(str(rel), "document-scoped personas file material under references/checks/, "
+                           "not references/criteria/")
+        if not (checks / "_index.md").is_file():
+            fail(str(rel), "missing references/checks/_index.md")
 
 
 def check_leakage():

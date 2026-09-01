@@ -6,6 +6,7 @@ Requires `gh` v2.90.0 or later.
 
 ```
 gh skill install ace-lectures/req-audit bertrand --agent github-copilot --scope user
+gh skill install ace-lectures/req-audit frida    --agent github-copilot --scope user
 gh skill install ace-lectures/req-audit peggy    --agent github-copilot --scope user
 ```
 
@@ -20,6 +21,7 @@ document, so every team member has them after a clone.
 git clone https://github.com/ace-lectures/req-audit ~/req-audit
 mkdir -p ~/.agents/skills
 ln -s ~/req-audit/skills/bertrand ~/.agents/skills/bertrand
+ln -s ~/req-audit/skills/frida    ~/.agents/skills/frida
 ln -s ~/req-audit/skills/peggy    ~/.agents/skills/peggy
 ```
 

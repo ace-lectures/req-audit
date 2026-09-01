@@ -6,6 +6,7 @@ Requires `gh` v2.90.0 or later.
 
 ```
 gh skill install ace-lectures/req-audit bertrand --agent cursor --scope user
+gh skill install ace-lectures/req-audit frida    --agent cursor --scope user
 gh skill install ace-lectures/req-audit peggy    --agent cursor --scope user
 ```
 
@@ -18,6 +19,7 @@ teammates get by cloning.
 git clone https://github.com/ace-lectures/req-audit ~/req-audit
 mkdir -p ~/.agents/skills
 ln -s ~/req-audit/skills/bertrand ~/.agents/skills/bertrand
+ln -s ~/req-audit/skills/frida    ~/.agents/skills/frida
 ln -s ~/req-audit/skills/peggy    ~/.agents/skills/peggy
 ```
 
@@ -34,4 +36,4 @@ agent that reads the shared convention.
 
 ## Use it
 
-Open your document repository and ask the agent for the persona by name.
+Open your document repository and ask the agent for the persona by name — with a section id for `bertrand` and `frida`.

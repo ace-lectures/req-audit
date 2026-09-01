@@ -1,7 +1,7 @@
 # Install on Claude Code
 
-Two routes. The plugin marketplace installs both personas at once and keeps them updatable; the
-GitHub CLI route installs one persona at a time.
+Two routes. The plugin marketplace installs all three personas at once and keeps them
+updatable; the GitHub CLI route installs one persona at a time.
 
 ## Marketplace (recommended)
 
@@ -12,13 +12,14 @@ In Claude Code, from any directory:
 /plugin install req-audit@ace-lectures
 ```
 
-The install command opens a details view where you pick a scope. Choose **user** if you want the
+This installs all three personas. The install command opens a details view where you pick a scope. Choose **user** if you want the
 personas available in every project, or **project** to pin them to your document repository.
 
 Then invoke a persona by name:
 
 ```
 /req-audit:bertrand
+/req-audit:frida
 /req-audit:peggy
 ```
 
@@ -34,11 +35,12 @@ Requires `gh` v2.90.0 or later.
 
 ```
 gh skill install ace-lectures/req-audit bertrand --agent claude-code --scope user
+gh skill install ace-lectures/req-audit frida    --agent claude-code --scope user
 gh skill install ace-lectures/req-audit peggy    --agent claude-code --scope user
 ```
 
 Use `--scope project` from inside your document repository to install into its `.claude/skills/`
-instead. Invoked as `/bertrand` and `/peggy`.
+instead. Invoked as `/bertrand`, `/frida` and `/peggy`.
 
 ## Manual
 
@@ -46,6 +48,7 @@ instead. Invoked as `/bertrand` and `/peggy`.
 git clone https://github.com/ace-lectures/req-audit ~/req-audit
 mkdir -p ~/.claude/skills
 ln -s ~/req-audit/skills/bertrand ~/.claude/skills/bertrand
+ln -s ~/req-audit/skills/frida    ~/.claude/skills/frida
 ln -s ~/req-audit/skills/peggy    ~/.claude/skills/peggy
 ```
 
@@ -61,5 +64,5 @@ exist when the session started.
 
 ## Check it worked
 
-Run `/skills` — `bertrand` and `peggy` should be listed. Both are marked
+Run `/skills` — `bertrand`, `frida` and `peggy` should be listed. All three are marked
 `disable-model-invocation`, so they never activate on their own: you always choose the persona.

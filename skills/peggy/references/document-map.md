@@ -100,3 +100,16 @@ that look alike belong here.
 _TODO: the boundary table — which pairs of sections teams confuse, and the distinction the
 template draws between them. Source it from the guidance blocks in the section files rather than
 from memory._
+
+## Section dependencies
+
+A section-scoped reviewer works on one section **and the sections it depends on** — the ones whose
+content it builds upon or must stay consistent with. This is the map that says which those are.
+
+_TODO: the dependency table, one row per section, listing the sections it depends on. The
+template's own guidance blocks already cross-reference each other (`<<s4>>`, `<<g5>>`, `<<p6>>`
+and so on); seed the table from those rather than from memory, then extend it._
+
+| Section | Depends on |
+|---|---|
+| _TODO_ | _TODO_ |

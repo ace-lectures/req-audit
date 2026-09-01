@@ -16,13 +16,18 @@ Codex, Cursor, Gemini CLI and GitHub Copilot without modification.
 
 ## The personas
 
-| Persona | For |
-|---|---|
-| **bertrand** | Critique — _TODO_ |
-| **peggy** | Alternatives — _TODO_ |
+| Persona | Role | Works on |
+|---|---|---|
+| **bertrand** | The critic — _TODO_ | One section, plus the sections it depends on |
+| **frida** | The creative one — _TODO_ | One section, plus the sections it depends on |
+| **peggy** | Rules and order — _TODO_ | The complete document: consistency across sections |
 
-Both read the `.adoc` sources in your repository. Neither writes any part of the document, and
-neither produces a report or a score: the output of a session is conversation.
+**Bertrand** and **frida** take a section as their subject: give them a section id (`S.4`, `G.3`)
+when you invoke them, or they will ask for one. **Peggy** takes no section — she reads the whole
+document, because the things she looks for only show up between sections.
+
+All three read the `.adoc` sources in your repository. None of them writes any part of the
+document, and none produces a report or a score: the output of a session is conversation.
 
 ## Install
 
@@ -38,10 +43,11 @@ The short version, for any of them, with `gh` v2.90.0 or later:
 
 ```
 gh skill install ace-lectures/req-audit bertrand --agent <your-agent> --scope user
+gh skill install ace-lectures/req-audit frida    --agent <your-agent> --scope user
 gh skill install ace-lectures/req-audit peggy    --agent <your-agent> --scope user
 ```
 
-On Claude Code you can instead install both at once as a plugin:
+On Claude Code you can instead install all three at once as a plugin:
 
 ```
 /plugin marketplace add ace-lectures/req-audit
@@ -51,14 +57,15 @@ On Claude Code you can instead install both at once as a plugin:
 ## Use
 
 Open your **document repository** — the one containing `index.adoc`, `metadata.adoc` and `parts/`
-— and ask for a persona by name. See [docs/using-it.md](docs/using-it.md).
+— and ask for a persona by name, with a section id for the section-scoped ones. See
+[docs/using-it.md](docs/using-it.md).
 
 ## Repository layout
 
 | Path | What it is |
 |---|---|
 | `skills/<persona>/` | One Agent Skill per persona. Self-contained and individually installable. |
-| `shared/` | Single source of truth for material every persona must agree on: the house rules, the section inventory, the milestone split. |
+| `shared/` | Single source of truth for material every persona must agree on: the house rules, the section inventory and dependencies, the milestone split. |
 | `scripts/` | `sync.py` materialises `shared/` into each skill; `validate.py` backs `make check`. |
 | `docs/` | Per-agent install instructions, student usage notes, and authoring notes. |
 | `.claude-plugin/` | Marketplace and plugin manifests, so the repository installs as one plugin. |
