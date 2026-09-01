@@ -1,4 +1,4 @@
-# req-audit — reviewer personas for a requirements document
+# req-audit: reviewer personas for a requirements document
 
 PYTHON ?= python3
 TEMPLATE ?=

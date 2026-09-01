@@ -31,6 +31,8 @@ BOOKS = {"G": "goals", "E": "environment", "S": "system", "P": "project"}
 AGENT_NAMES = ["Claude", "Codex", "Cursor", "Gemini", "Copilot", "ChatGPT", "Anthropic",
                "OpenAI", "Antigravity", "Windsurf", "Cline", "Zed"]
 
+DEP_ROW = re.compile(r'^\| \*\*([GESP]\.\d)\*\* \| ([^|]*) \| ([^|]*) \|', re.M)
+
 ROW = re.compile(r'^\| ([GESP]\.\d) \| ([^|]+?) \| `([^`]+)` \| `<<(\w+)>>` \| (\d) \|', re.M)
 
 problems = []
@@ -90,6 +92,65 @@ def check_inventory(rows):
             fail(where, f"{sid}: anchor is `<<{anchor}>>`, expected `<<{letter.lower()}{number}>>`")
         if milestone not in "123":
             fail(where, f"{sid}: milestone `{milestone}` is not 1, 2 or 3")
+
+
+def check_dependencies(rows):
+    """The dependency table must cover every section, be acyclic, and have Feeds as the exact
+    inverse of Depends on. Otherwise a reviewer sent to read a section's dependencies gets a
+    different answer depending on which column it looked at."""
+    where = "shared/document-map.md"
+    known = {r[0] for r in rows}
+
+    def cells(text):
+        text = text.strip()
+        return [] if text in ("", "none") else [c.strip().rstrip("\u2020") for c in text.split(",")]
+
+    table = DEP_ROW.findall((SHARED / "document-map.md").read_text())
+    if not table:
+        fail(where, "no section dependency table found")
+        return
+    depends = {sid: cells(d) for sid, d, _ in table}
+    feeds = {sid: cells(f) for sid, _, f in table}
+
+    missing = known - set(depends)
+    if missing:
+        fail(where, f"dependency table is missing {', '.join(sorted(missing))}")
+    for sid in sorted(set(depends) - known):
+        fail(where, f"dependency table has unknown section {sid}")
+
+    for sid in sorted(depends):
+        for other in depends[sid] + feeds[sid]:
+            if other not in known:
+                fail(where, f"{sid}: unknown section `{other}` in the dependency table")
+        if sid in depends[sid]:
+            fail(where, f"{sid} depends on itself")
+
+    expected = {sid: set() for sid in depends}
+    for sid, ds in depends.items():
+        for d in ds:
+            if d in expected:
+                expected[d].add(sid)
+    for sid in sorted(depends):
+        if set(feeds.get(sid, [])) != expected[sid]:
+            fail(where, f"{sid}: Feeds column is not the inverse of Depends on "
+                        f"(expected {', '.join(sorted(expected[sid])) or 'none'})")
+
+    colour = {}
+
+    def visit(node, stack):
+        if colour.get(node) == "done":
+            return
+        if colour.get(node) == "open":
+            fail(where, f"dependency cycle: {' -> '.join(stack + [node])}")
+            return
+        colour[node] = "open"
+        for dep in depends.get(node, []):
+            if dep in depends:
+                visit(dep, stack + [node])
+        colour[node] = "done"
+
+    for sid in sorted(depends):
+        visit(sid, [])
 
 
 def check_skill(skill, rows):
@@ -154,7 +215,22 @@ def check_leakage():
         for name in AGENT_NAMES:
             if re.search(rf'\b{name}\b', text):
                 fail(str(path.relative_to(ROOT)),
-                     f"names the agent `{name}` — skill bodies must stay agent-agnostic")
+                     f"names the agent `{name}`; skill bodies must stay agent-agnostic")
+
+
+def check_typography():
+    """No em dashes or en dashes, anywhere. House style, enforced so it cannot drift back in."""
+    for path in sorted(ROOT.rglob("*")):
+        if not path.is_file() or ".git" in path.parts:
+            continue
+        if path.suffix not in {".md", ".py", ".json", ".yml", ".yaml", ".sh"} \
+                and path.name != "Makefile":
+            continue
+        for number, line in enumerate(path.read_text(errors="ignore").splitlines(), 1):
+            for dash, kind in (("\u2014", "em dash"), ("\u2013", "en dash")):
+                if dash in line:
+                    fail(f"{path.relative_to(ROOT)}:{number}",
+                         f"contains an {kind}; rewrite the sentence, do not swap in a hyphen")
 
 
 def check_plugin():
@@ -181,7 +257,7 @@ def check_plugin():
 def check_template(template, rows):
     path = Path(template) / ".github" / "course" / "sections.json"
     if not path.is_file():
-        fail(str(path), "not found — is --template pointing at cas-handbook-req-template?")
+        fail(str(path), "not found. Is --template pointing at cas-handbook-req-template?")
         return
     upstream = {}
     for entry in json.loads(path.read_text()):
@@ -207,6 +283,7 @@ def main():
 
     rows = sections()
     check_inventory(rows)
+    check_dependencies(rows)
 
     skills = sorted(p for p in SKILLS.iterdir() if p.is_dir())
     if not skills:
@@ -221,6 +298,7 @@ def main():
         fail("skills/*/references", "generated copies are out of date")
 
     check_leakage()
+    check_typography()
     check_plugin()
     if args.template:
         check_template(args.template, rows)

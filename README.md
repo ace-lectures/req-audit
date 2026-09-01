@@ -11,19 +11,19 @@ Each persona is an [Agent Skill](https://agentskills.io), so the same folder wor
 Codex, Cursor, Gemini CLI and GitHub Copilot without modification.
 
 > **Scaffolding.** The repository structure, tooling and install routes are in place and verified.
-> The personas' instructions and their review criteria are stubs — see the `_TODO_` markers in
+> The personas' instructions and their review criteria are stubs. See the `_TODO_` markers in
 > `shared/` and `skills/*/references/criteria/`.
 
 ## The personas
 
 | Persona | Role | Works on |
 |---|---|---|
-| **bertrand** | The critic — _TODO_ | One section, plus the sections it depends on |
-| **frida** | The creative one — _TODO_ | One section, plus the sections it depends on |
-| **peggy** | Rules and order — _TODO_ | The complete document: consistency across sections |
+| **bertrand** | The critic. _TODO_ | One section, plus the sections it depends on |
+| **frida** | The creative one. _TODO_ | One section, plus the sections it depends on |
+| **peggy** | Rules and order. _TODO_ | The complete document: consistency across sections |
 
 **Bertrand** and **frida** take a section as their subject: give them a section id (`S.4`, `G.3`)
-when you invoke them, or they will ask for one. **Peggy** takes no section — she reads the whole
+when you invoke them, or they will ask for one. **Peggy** takes no section. She reads the whole
 document, because the things she looks for only show up between sections.
 
 All three read the `.adoc` sources in your repository. None of them writes any part of the
@@ -56,8 +56,8 @@ On Claude Code you can instead install all three at once as a plugin:
 
 ## Use
 
-Open your **document repository** — the one containing `index.adoc`, `metadata.adoc` and `parts/`
-— and ask for a persona by name, with a section id for the section-scoped ones. See
+Open your **document repository**, the one containing `index.adoc`, `metadata.adoc` and
+`parts/`, and ask for a persona by name, with a section id for the section-scoped ones. See
 [docs/using-it.md](docs/using-it.md).
 
 ## Repository layout
@@ -79,4 +79,4 @@ make check   # validate the catalogue
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT. See [LICENSE](LICENSE).

@@ -25,7 +25,7 @@ ln -s ~/req-audit/skills/peggy    ~/.agents/skills/peggy
 
 For a project-scoped install, use `<repo>/.agents/skills/` instead of `~/.agents/skills/`.
 
-Restart Codex — the CLI session, and the IDE extension if you use one — so it loads the new
+Restart Codex, both the CLI session and the IDE extension if you use one, so it loads the new
 skills.
 
 ## Where they land
@@ -36,10 +36,10 @@ skills.
 | Repository | `<repo>/.agents/skills/<persona>/` |
 
 Codex scans `.agents/skills` in every directory from your working directory up to the repository
-root. Note that `~/.codex/` is the personal *configuration* directory — shareable skills go in
+root. Note that `~/.codex/` is the personal *configuration* directory. Shareable skills go in
 `.agents/skills`, not there.
 
 ## Use it
 
-Open your document repository and ask for the persona by name — "review G.3 as bertrand", or
+Open your document repository and ask for the persona by name: "review G.3 as bertrand", or
 invoke it from the slash-command menu.

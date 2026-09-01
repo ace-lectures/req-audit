@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parent.parent
 SHARED = ROOT / "shared"
 SKILLS = ROOT / "skills"
 
-BANNER = "<!-- GENERATED from shared/{name} by scripts/sync.py — do not edit. -->"
+BANNER = "<!-- GENERATED from shared/{name} by scripts/sync.py. Do not edit. -->"
 
 
 def render(source: Path) -> str:
@@ -48,7 +48,7 @@ def main(argv):
         return 0
 
     for dest, why in stale:
-        print(f"{dest.relative_to(ROOT)}: {why} — run `make sync`", file=sys.stderr)
+        print(f"{dest.relative_to(ROOT)}: {why}; run `make sync`", file=sys.stderr)
     return 1 if stale else 0
 
 

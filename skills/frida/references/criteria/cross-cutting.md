@@ -1,4 +1,4 @@
-# Cross-cutting criteria — frida
+# Cross-cutting criteria: frida
 
 Properties that apply to any section, whatever it is about.
 

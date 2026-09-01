@@ -2,12 +2,12 @@
 
 The document is delivered three times. Each delivery is a full document; the milestone only says
 which sections are expected to have content by then. Sections outside the current milestone are
-legitimately still empty — do not treat them as omissions.
+legitimately still empty. Do not treat them as omissions.
 
 **Ask which milestone the team is on before reviewing anything.** `metadata.adoc` carries a
 `:milestone:` attribute, but it is often stale; confirm it with the team.
 
-## Milestone 1 — 10 sections
+## Milestone 1: 10 sections
 
 Establish why the project exists and who cares about it.
 
@@ -15,10 +15,10 @@ Establish why the project exists and who cares about it.
 |---|---|
 | Goals | G.1, G.2, G.3, G.4, G.7 |
 | Environment | E.1, E.5, E.6 |
-| System | — |
+| System | none |
 | Project | P.6, P.7 |
 
-## Milestone 2 — 10 sections, plus one revision
+## Milestone 2: 10 sections, plus one revision
 
 Specify the system and the environment it sits in.
 
@@ -27,27 +27,27 @@ Specify the system and the environment it sits in.
 | Goals | G.5, G.6 |
 | Environment | E.2, E.3, E.4 |
 | System | S.1, S.2, S.3, S.4, S.6 |
-| Project | — |
+| Project | none |
 
-**Revision due:** E.1 — extend the glossary with a domain model (a class diagram) so the
+**Revision due:** E.1, extend the glossary with a domain model (a class diagram) so the
 terminology has structure, not just definitions.
 
-## Milestone 3 — 6 sections, plus two revisions
+## Milestone 3: 6 sections, plus two revisions
 
 Plan the work and commit to what matters most.
 
 | Book | Sections |
 |---|---|
-| Goals | — |
-| Environment | — |
+| Goals | none |
+| Environment | none |
 | System | S.5 |
 | Project | P.1, P.2, P.3, P.4, P.5 |
 
 **Revisions due:**
 
-- S.6 — take the single most important scenario from S.4 and propose five tests for it, in any
+- S.6: take the single most important scenario from S.4 and propose five tests for it, in any
   formalism, plus a traceability matrix linking the tests back to the requirements.
-- P.6 — identify up to two security threats and describe mitigation mechanisms.
+- P.6: identify up to two security threats and describe mitigation mechanisms.
 
 ## What a milestone review means
 

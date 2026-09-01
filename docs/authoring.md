@@ -1,10 +1,10 @@
-# Authoring — for instructors
+# Authoring, for instructors
 
 ## How the repository fits together
 
 ```
 shared/            single source of truth for anything every persona must agree on
-skills/<persona>/  one Agent Skill per persona — self-contained and individually installable
+skills/<persona>/  one Agent Skill per persona, self-contained and installable on its own
 scripts/           sync.py (shared/ -> skills), validate.py (make check)
 docs/              per-agent install instructions, student-facing usage notes
 .claude-plugin/    marketplace + plugin manifests, so the repo installs as one plugin
@@ -17,8 +17,8 @@ reference material is filed:
 
 | Scope | Personas | Subject | Reference material |
 |---|---|---|---|
-| `section` | bertrand, frida | One section, plus the sections it depends on | `references/criteria/` — `cross-cutting.md` plus one file per book, with an entry for each of the 26 sections |
-| `document` | peggy | The complete document | `references/checks/` — one file per check dimension, listed in `_index.md` |
+| `section` | bertrand, frida | One section, plus the sections it depends on | `references/criteria/`: `cross-cutting.md` plus one file per book, with an entry for each of the 26 sections |
+| `document` | peggy | The complete document | `references/checks/`: one file per check dimension, listed in `_index.md` |
 
 ```yaml
 metadata:
@@ -27,7 +27,7 @@ metadata:
 
 `metadata` is a standard Agent Skills frontmatter field (an arbitrary string-to-string map), so
 declaring the scope there is portable; agents ignore keys they do not know. `make check` reads it
-and enforces the matching layout — a section-scoped persona with a `checks/` directory fails, and
+and enforces the matching layout. A section-scoped persona with a `checks/` directory fails, and
 so does a document-scoped one with a `criteria/` directory.
 
 ### Passing a section to a section-scoped persona
@@ -35,7 +35,7 @@ so does a document-scoped one with a `criteria/` directory.
 The Agent Skills specification defines **no argument mechanism**; `$1` and `$ARGUMENTS` are
 agent-specific extensions. So a section-scoped persona is written to take the section id if the
 agent happened to pass one through, and to *ask* otherwise. Never write agent-specific argument
-placeholders into a skill body — it would work on one agent and silently do nothing on the rest.
+placeholders into a skill body. They would work on one agent and silently do nothing on the rest.
 
 `skills/<persona>/references/{house-rules,document-map,milestones}.md` are **generated copies** of
 `shared/`. They carry a `<!-- GENERATED ... -->` banner. Never edit them: edit `shared/`, run
@@ -49,8 +49,8 @@ persona.
 
 Criteria live in `skills/<persona>/references/criteria/`:
 
-- `cross-cutting.md` — properties that apply to any section.
-- `goals.md`, `environment.md`, `system.md`, `project.md` — one `##` entry per section, in
+- `cross-cutting.md`: properties that apply to any section.
+- `goals.md`, `environment.md`, `system.md`, `project.md`: one `##` entry per section, in
   document order, each carrying its file path and milestone.
 
 These are **per-persona and hand-written**: each persona looks at the same section for different
@@ -60,7 +60,7 @@ an entry for all 26 sections; it does not check that the entries say anything, s
 ## Editing checks (document-scoped personas)
 
 Checks live in `skills/<persona>/references/checks/`, one file per dimension, with `_index.md`
-saying what each covers. `make check` requires the index to exist and nothing more — the
+saying what each covers. `make check` requires the index to exist and nothing more. The
 dimensions are yours to name.
 
 ## Adding a persona
@@ -70,7 +70,7 @@ dimensions are yours to name.
    out the reference material you are not keeping.
 2. Edit `SKILL.md`. The `name` **must** equal the directory name and be lowercase alphanumerics
    with single hyphens (spec rule, enforced). Set `metadata.req-audit-scope`. Write a
-   `description` — max 1024 characters — that says what this persona looks for and when a team
+   `description`, at most 1024 characters, that says what this persona looks for and when a team
    should reach for it; it is what the agent matches against, and what students see in a list.
 3. Keep the heading skeleton for the scope (`Who I am` / `What I will not do` / `What I work on` /
    `How I start` / `How I work through …` / `Where my criteria|checks live`). It is what keeps the
@@ -81,13 +81,13 @@ dimensions are yours to name.
 6. Add a row to the persona tables in `README.md` and `docs/using-it.md`, and add the install
    line to each file under `docs/install/`.
 
-Nothing else needs touching — the plugin manifest points at the repo root, so a new folder under
+Nothing else needs touching. The plugin manifest points at the repo root, so a new folder under
 `skills/` is picked up automatically.
 
 ## The rules that are not per-persona
 
 `shared/house-rules.md` binds every persona and is synced into all of them. Two of its rules are
-fixed by design — the personas never write the document, and their output is questions and
+fixed by design: the personas never write the document, and their output is questions and
 critique only. The rest of the file is a set of stubs to fill in.
 
 Each persona also restates the non-negotiables inline in its `SKILL.md`, deliberately, so they
@@ -113,7 +113,7 @@ library validates a `SKILL.md` against the spec directly, if you want a second o
 
 That last check is what keeps the personas portable. Agent-specific instructions belong in
 `docs/install/`, never in a skill body. The one deliberate exception is the
-`disable-model-invocation: true` frontmatter key, which one agent honours and the others ignore —
+`disable-model-invocation: true` frontmatter key, which one agent honours and the others ignore.
 it makes students choose a persona explicitly rather than having one activate on its own.
 
 ## Updating for a new term

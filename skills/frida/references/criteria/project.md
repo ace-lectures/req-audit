@@ -1,4 +1,4 @@
-# (P) Project — frida
+# (P) Project: frida criteria
 
 One entry per section. _TODO: what this persona probes for here, how teams go wrong, and the questions it asks._
 

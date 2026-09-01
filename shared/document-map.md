@@ -9,7 +9,7 @@ Analysis* (Springer, 2022).
 | Path | What it holds |
 |---|---|
 | `index.adoc` | Root document; assembles everything. |
-| `metadata.adoc` | Team-supplied settings: authors, project title, course number and term, revision, current milestone, draft flag. **Read this first** — it tells you who the team is and which milestone they are on. |
+| `metadata.adoc` | Team-supplied settings: authors, project title, course number and term, revision, current milestone, draft flag. **Read this first**: it tells you who the team is and which milestone they are on. |
 | `parts/core.adoc` | Assembly order of the four books. |
 | `parts/control.adoc` | Document-level version and feedback tracking table. |
 | `parts/integrity.adoc` | Per-author academic-integrity affirmation. |
@@ -43,7 +43,7 @@ endif::[]
 
 26 sections across four books. Anchors are the lowercase id without the dot.
 
-### (G) Goals — `parts/goals/`
+### (G) Goals, in `parts/goals/`
 
 | Id | Title | File | Anchor | Milestone |
 |---|---|---|---|---|
@@ -55,7 +55,7 @@ endif::[]
 | G.6 | Limitations and Exclusions | `parts/goals/G6.adoc` | `<<g6>>` | 2 |
 | G.7 | Stakeholders and requirements sources | `parts/goals/G7.adoc` | `<<g7>>` | 1 |
 
-### (E) Environment — `parts/environment/`
+### (E) Environment, in `parts/environment/`
 
 | Id | Title | File | Anchor | Milestone |
 |---|---|---|---|---|
@@ -66,7 +66,7 @@ endif::[]
 | E.5 | Effects | `parts/environment/E5.adoc` | `<<e5>>` | 1 |
 | E.6 | Invariants | `parts/environment/E6.adoc` | `<<e6>>` | 1 |
 
-### (S) System — `parts/system/`
+### (S) System, in `parts/system/`
 
 | Id | Title | File | Anchor | Milestone |
 |---|---|---|---|---|
@@ -77,7 +77,7 @@ endif::[]
 | S.5 | Prioritization | `parts/system/S5.adoc` | `<<s5>>` | 3 |
 | S.6 | Verification and acceptance criteria | `parts/system/S6.adoc` | `<<s6>>` | 2 |
 
-### (P) Project — `parts/project/`
+### (P) Project, in `parts/project/`
 
 | Id | Title | File | Anchor | Milestone |
 |---|---|---|---|---|
@@ -95,19 +95,117 @@ The template deliberately separates concerns across its four books, and its own 
 guidance states where each concern belongs. Misplaced material is a common finding, so the pairs
 that look alike belong here.
 
-_TODO: the boundary table — which pairs of sections teams confuse, and the distinction the
+_TODO: the boundary table. Which pairs of sections teams confuse, and the distinction the
 template draws between them. Source it from the guidance blocks in the section files rather than
 from memory._
 
 ## Section dependencies
 
-A section-scoped reviewer works on one section **and the sections it depends on** — the ones whose
+A section-scoped reviewer works on one section **and the sections it depends on**, the ones whose
 content it builds upon or must stay consistent with. This is the map that says which those are.
 
-_TODO: the dependency table, one row per section, listing the sections it depends on. The
-template's own guidance blocks already cross-reference each other (`<<s4>>`, `<<g5>>`, `<<p6>>`
-and so on); seed the table from those rather than from memory, then extend it._
+### The four books
 
-| Section | Depends on |
-|---|---|
-| _TODO_ | _TODO_ |
+PEGS books are not written in sequence, but they do refer to each other in one prevailing
+direction:
+
+```
+Environment  ──────┐          the world, which exists whether or not the project does
+                   ↓
+Goals  ────────────┼───────→  why the system is wanted, in business terms
+                   ↓
+System ────────────┼───────→  what the system does, given those goals in that world
+                   ↓
+Project ───────────┘          how it gets built, given all of the above
+```
+
+- **Environment** is the most self-standing book. It describes what is true of the world
+  regardless of this project, so it borrows least from the others.
+- **Goals** builds on Environment (it describes a situation *in* that world) and on nothing in
+  System or Project. A goal expressed in terms of the system's own structure is a goal that has
+  leaked downward.
+- **System** builds on Goals (what the system is for) and Environment (what it must live with).
+- **Project** builds on all three, and on System most of all: you cannot schedule what you have
+  not specified.
+
+A reference pointing *up* this order is the strongest signal that material is in the wrong book.
+
+### Two dependencies that hold everywhere
+
+- **E.1 (Glossary)** underpins every section in every book. It is deliberately left out of the
+  table below, which would otherwise list it 25 times. Any section using a domain term depends on
+  E.1 defining it, and on using it in that sense.
+- **G.7 (Stakeholders and requirements sources)** is where the content of the Goals book comes
+  from. It is listed only where the dependency is direct, but a claim anywhere in G with no
+  traceable source in G.7 is worth a question.
+
+### Dependencies are context, not preconditions
+
+The sections a section depends on are there to **give the reviewer context and to expose
+inconsistency**. They are not requirements that must be satisfied before the section can be
+judged.
+
+- **A dependency that is empty, thin or absent is not a finding.** It may be due at a later
+  milestone, or the team may simply not have written it yet. Do not raise it, do not treat it as a
+  gap in the section under review, and do not ask the team to go write it first.
+- **Read the dependencies to check the section against them**, not to audit the dependencies
+  themselves. The question is whether this section contradicts, silently duplicates, or drifts
+  from what it builds on, and whether a term or claim it leans on is actually established there.
+- **When a dependency is empty, say so once, in passing, and carry on.** The most it warrants is
+  noting which check could not be made: "S.1 is still empty, so I can't tell whether these
+  behaviours line up with the components." Then review the section on its own terms.
+- **The same goes for `Feeds`.** Downstream sections that do not exist yet are not omissions. The
+  column is there so a finding can be weighed: a problem that three later sections will inherit
+  is worth more of the team's attention than one that stops where it is.
+
+A section is reviewed on what it says, in the light of whatever context happens to exist.
+
+### The table
+
+`Depends on` is what to read before judging a section. `Feeds` is the exact inverse: the sections
+that will inherit the problem if this one is wrong, which is what makes a finding worth raising.
+
+**†** marks a dependency stated outright in the template's own `ifdef::env-draft[]` guidance. The
+rest are read off the PEGS structure and are the instructor's to confirm or correct.
+
+| Section | Depends on | Feeds |
+|---|---|---|
+| **G.1** | none | G.2, G.3, G.7, P.2 |
+| **G.2** | G.1 | G.3 |
+| **G.3** | G.1, G.2 | G.4, G.6, S.5, S.6 |
+| **G.4** | G.3 | G.5, G.6, S.1, S.2 |
+| **G.5** | G.4, G.7 | S.4 |
+| **G.6** | G.3, G.4 | P.6 |
+| **G.7** | G.1 | G.5, P.1, P.7 |
+| **E.1** | none | none |
+| **E.2** | none | E.3, S.1, S.3, P.5 |
+| **E.3** | E.2 | E.4, E.5, E.6, S.2, P.2 |
+| **E.4** | E.3† | E.5, E.6, S.2 |
+| **E.5** | E.3†, E.4† | E.6, S.2 |
+| **E.6** | E.3, E.4, E.5 | S.2 |
+| **S.1** | G.4, E.2 | S.2, P.5 |
+| **S.2** | G.4, E.3, E.4, E.5, E.6, S.1† | S.3, S.4, S.5, S.6, P.5 |
+| **S.3** | E.2†, S.2† | S.4, S.5 |
+| **S.4** | G.5†, S.2, S.3† | S.5, S.6 |
+| **S.5** | G.3, S.2†, S.3†, S.4† | P.3 |
+| **S.6** | G.3, S.2, S.4 | none |
+| **P.1** | G.7, P.4 | none |
+| **P.2** | G.1, E.3 | none |
+| **P.3** | S.5 | P.4, P.6 |
+| **P.4** | P.3† | P.1, P.6 |
+| **P.5** | E.2†, S.1, S.2 | P.6 |
+| **P.6** | G.6†, P.3, P.4†, P.5† | none |
+| **P.7** | G.7 | none |
+
+### Where the table and the milestones disagree
+
+The milestone split does not follow the dependency order everywhere, and two cases are worth
+knowing about because they look like errors in a team's document when they are not:
+
+- **E.5 and E.6 are due at milestone 1, but depend on E.3 and E.4, due at milestone 2.** A team
+  writing effects and invariants before constraints and assumptions is following the schedule, not
+  making a mistake. Expect E.5 and E.6 to need revisiting once E.3 and E.4 exist.
+- **G.4 is due at milestone 1 and S.2 at milestone 2.** That is the intended direction,
+  the capsule overview first and the specification after, but it means S.2 arriving without changing
+  G.4 deserves a question, since elaborating functionality usually reveals the overview was
+  wrong.

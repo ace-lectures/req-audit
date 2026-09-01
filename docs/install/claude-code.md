@@ -64,5 +64,5 @@ exist when the session started.
 
 ## Check it worked
 
-Run `/skills` — `bertrand`, `frida` and `peggy` should be listed. All three are marked
+Run `/skills`. `bertrand`, `frida` and `peggy` should be listed. All three are marked
 `disable-model-invocation`, so they never activate on their own: you always choose the persona.

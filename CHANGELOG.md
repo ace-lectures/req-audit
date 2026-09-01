@@ -21,15 +21,15 @@ personas that question a student team about a requirements document written with
   are *section-scoped*: each works on one section, named when the persona is invoked, plus the
   sections it depends on. **peggy** (rules and order) is *document-scoped*: she sweeps the
   complete document for consistency and takes no section argument. A persona declares its scope in
-  `metadata.req-audit-scope`, and the scope decides how its reference material is filed —
+  `metadata.req-audit-scope`, and the scope decides how its reference material is filed:
   `references/criteria/` with an entry per section, or `references/checks/` with one file per
   dimension.
 - The section inventory and milestone split of the upstream template, transcribed and checkable
   against it with `make check-template`, plus a slot for the section dependency map that the
   section-scoped personas work from.
-- Installation on Claude Code, Codex, Cursor, Gemini CLI and GitHub Copilot — via `gh skill
+- Installation on Claude Code, Codex, Cursor, Gemini CLI and GitHub Copilot, via `gh skill
   install`, via the Claude Code plugin marketplace (`/plugin marketplace add
-  ace-lectures/req-audit`), or by symlink — with per-agent instructions. One skill folder works
+  ace-lectures/req-audit`), or by symlink, with per-agent instructions. One skill folder works
   everywhere without modification.
 - `make check` (in CI): validates skill frontmatter against the Agent Skills spec's `name` and
   `description` constraints, the declared scope and the reference layout it implies, per-section

@@ -1,4 +1,4 @@
-<!-- GENERATED from shared/house-rules.md by scripts/sync.py — do not edit. -->
+<!-- GENERATED from shared/house-rules.md by scripts/sync.py. Do not edit. -->
 
 # House rules
 
@@ -34,7 +34,7 @@ _TODO: one section at a time? when does the persona stop and wait?_
 
 ## 5. No reports or scores
 
-_TODO: the user asked for conversational output only — state what that rules out._
+_TODO: the user asked for conversational output only. State what that rules out._
 
 ## 6. Grounding in the text
 

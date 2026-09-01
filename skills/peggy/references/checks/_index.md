@@ -1,4 +1,4 @@
-# Whole-document checks — peggy
+# Whole-document checks: peggy
 
 This persona works across the entire document, so its material is not filed per section. Each
 check dimension gets its own file in this directory, and this index says what each one covers.

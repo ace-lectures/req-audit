@@ -27,13 +27,13 @@ ln -s ~/req-audit/skills/peggy    ~/.agents/skills/peggy
 
 | Scope | Path |
 |---|---|
-| User | `~/.agents/skills/<persona>/` — or `~/.cursor/skills/<persona>/` |
-| Project | `<repo>/.agents/skills/<persona>/` — or `<repo>/.cursor/skills/<persona>/` |
+| User | `~/.agents/skills/<persona>/`, or `~/.cursor/skills/<persona>/` |
+| Project | `<repo>/.agents/skills/<persona>/`, or `<repo>/.cursor/skills/<persona>/` |
 
 Cursor also reads `.claude/skills/` and `.codex/skills/` for compatibility, so an install done for
-another agent is usually already visible here. Prefer `.agents/skills/` — one folder serves every
+another agent is usually already visible here. Prefer `.agents/skills/`. One folder serves every
 agent that reads the shared convention.
 
 ## Use it
 
-Open your document repository and ask the agent for the persona by name — with a section id for `bertrand` and `frida`.
+Open your document repository and ask the agent for the persona by name, with a section id for `bertrand` and `frida`.

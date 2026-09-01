@@ -26,12 +26,12 @@ ln -s ~/req-audit/skills/peggy    ~/.agents/skills/peggy
 
 | Scope | Path |
 |---|---|
-| User | `~/.agents/skills/<persona>/` — or `~/.gemini/skills/<persona>/` |
-| Workspace | `<repo>/.agents/skills/<persona>/` — or `<repo>/.gemini/skills/<persona>/` |
+| User | `~/.agents/skills/<persona>/`, or `~/.gemini/skills/<persona>/` |
+| Workspace | `<repo>/.agents/skills/<persona>/`, or `<repo>/.gemini/skills/<persona>/` |
 
 Both locations work. `.agents/skills/` is the shared convention and takes precedence when a skill
-name appears in both, so prefer it — the same folder then also serves Codex, Cursor and Copilot.
+name appears in both, so prefer it. The same folder then also serves Codex, Cursor and Copilot.
 
 ## Use it
 
-Start the CLI in your document repository and ask for the persona by name — with a section id for `bertrand` and `frida`.
+Start the CLI in your document repository and ask for the persona by name, with a section id for `bertrand` and `frida`.
