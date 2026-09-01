@@ -93,13 +93,51 @@ endif::[]
 
 ## Section boundaries
 
-The template deliberately separates concerns across its four books, and its own `ifdef::env-draft[]`
-guidance states where each concern belongs. Misplaced material is a common finding, so the pairs
-that look alike belong here.
+Material that belongs in one book routinely lands in another, and it is the single most common
+thing a reviewer has to notice. The template draws these lines itself, in the `ifdef::env-draft[]`
+guidance it quotes from the Handbook, and names most of the confusions below outright.
 
-_TODO: the boundary table. Which pairs of sections teams confuse, and the distinction the
-template draws between them. Source it from the guidance blocks in the section files rather than
-from memory._
+**†** marks a distinction the template states in its own guidance, naming the other section by
+its anchor. The rest are read off that same guidance and are the instructor's to confirm.
+
+The table says where the line falls. It does not say to announce that material is on the wrong
+side of it: see rule 8 in `house-rules.md`.
+
+| These get confused | Where the line falls |
+|---|---|
+| **G.4 vs S.2** † | Depth. G.4 is "a kind of capsule version of book S, skipping details", principal properties only. S.2 is "the bulk of the System book", one subsection per component from S.1. If a reader has to go to G.4 to learn how something works, G.4 has taken S.2's job. |
+| **G.5 vs S.4** † | Vocabulary and coverage. G.5 holds main usage patterns "stated in user terms only, independently of the system's structure", with no special or erroneous cases. S.4 may name system components and covers the special and erroneous cases. A G.5 scenario that mentions a screen or a component belongs in S.4. |
+| **G.6 vs P.6** † | What is scoped out versus what might go wrong. G.6 states what the system will not do. The guidance is blunt that G.6 "is not the place for an analysis of risks and obstacles, which pertain to the project rather than the goals". |
+| **E.2 vs S.3** † | Direction. E.2 is interfaces provided *to* the system from the outside world. S.3 is interfaces provided *by* the system to the outside. |
+| **E.2 vs P.5** † | Running versus building. E.2 is what the operating system interacts with. P.5 is "technology elements that the system's development will require". A library the team compiles against is P.5; a service the running system calls is E.2. |
+| **E.3 vs E.4** † | Imposed versus chosen. E.3 is "non-negotiable restrictions coming from the environment". E.4 is properties "not imposed by the environment but assumed to hold, as an explicit decision". If the team could have decided otherwise, it is E.4. |
+| **E.3 and E.4 vs E.5** † | Direction again. E.3 and E.4 are the environment acting on the system. E.5 is the reverse: "effects are influences in the reverse direction". |
+| **E.5 vs E.6** | The same properties, opposite obligation. E.5 is what the system's operations change in the environment. E.6 is what they may assume on entry and must leave standing. Altered versus preserved. |
+| **S.1 vs E.2** | Ownership. S.1 lists the major parts of the system being built. E.2 lists elements of the environment. A component nobody on the team can change is E.2. |
+| **S.2 vs S.4** † | Description versus illustration. S.2 describes behaviour precisely. S.4 gives examples of interaction as user stories, which "are not by themselves a substitute for precise descriptions of functionality" but specify cases those descriptions must support. |
+| **S.5 vs P.3 and P.4** | Criticality versus schedule. S.5 ranks what the system does, so functions can be dropped under pressure. P.3 and P.4 order the work. Criticality is a property of the system; sequence is a property of the project. |
+| **P.2 vs E.3** | Both are imposed, by different parties. E.3 comes from the environment: business rules, physical laws. P.2 is bound on the project a priori, and the guidance is candid that some such choices "result from company policies" rather than technical analysis. |
+| **P.3 vs P.4** † | List versus detail. P.3 is the list of tasks and their scheduling, "the project's key dates". P.4 "details the individual tasks listed under P.3 and their expected outcomes". |
+
+### The boundary that runs through every book
+
+Above all the pairs sits the line between requirements and design. P.5 states it outright:
+
+> Although the actual use of such products belongs to design and implementation rather than
+> requirements, it is part of the requirements task to identify elements whose availability is
+> critical to the success of the project.
+
+A section that says *how* rather than *what* has crossed it, wherever it sits. This is the one
+boundary worth checking in every section rather than only in the pairs above.
+
+### One cross-reference worth verifying
+
+S.4's guidance reads "not by themselves a substitute for precise descriptions of functionality
+(`<<s3>>`)", but functionality is S.2 in this template and S.3 is Interfaces. The sentence and the
+anchor appear to disagree. It may be faithful to <<BM22>> and it may be a slip carried into the
+template; settling it needs the Handbook itself, which ships as `plan.pdf` in the template
+repository. Until it is settled, read the sentence rather than the anchor, and do not treat a team
+that followed one or the other as having made an error.
 
 ## Section dependencies
 
