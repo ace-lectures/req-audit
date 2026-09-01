@@ -5,8 +5,8 @@
 Requires `gh` v2.90.0 or later.
 
 ```
-gh skill install ace-lectures/req-audit bertrand --agent copilot --scope user
-gh skill install ace-lectures/req-audit peggy    --agent copilot --scope user
+gh skill install ace-lectures/req-audit bertrand --agent github-copilot --scope user
+gh skill install ace-lectures/req-audit peggy    --agent github-copilot --scope user
 ```
 
 Browse before installing with `gh skill install ace-lectures/req-audit` on its own.
