@@ -153,12 +153,13 @@ judged.
 - **Read the dependencies to check the section against them**, not to audit the dependencies
   themselves. The question is whether this section contradicts, silently duplicates, or drifts
   from what it builds on, and whether a term or claim it leans on is actually established there.
-- **When a dependency is empty, say so once, in passing, and carry on.** The most it warrants is
-  noting which check could not be made: "S.1 is still empty, so I can't tell whether these
-  behaviours line up with the components." Then review the section on its own terms.
+- **When a dependency is empty, ask the question anyway and carry on.** The check that could not be
+  made is still a question worth putting: "Which components do these behaviours belong to?" works
+  whether or not S.1 has been written. Do not announce the emptiness, and do not make it the
+  subject. Then review the section on its own terms.
 - **The same goes for `Feeds`.** Downstream sections that do not exist yet are not omissions. The
-  column is there so a finding can be weighed: a problem that three later sections will inherit
-  is worth more of the team's attention than one that stops where it is.
+  column is there so a question can be weighed: one that three later sections will inherit is
+  worth more of the team's attention than one that stops where it is.
 
 A section is reviewed on what it says, in the light of whatever context happens to exist.
 

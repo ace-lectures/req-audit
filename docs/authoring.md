@@ -86,9 +86,16 @@ Nothing else needs touching. The plugin manifest points at the repo root, so a n
 
 ## The rules that are not per-persona
 
-`shared/house-rules.md` binds every persona and is synced into all of them. Two of its rules are
-fixed by design: the personas never write the document, and their output is questions and
-critique only. The rest of the file is a set of stubs to fill in.
+`shared/house-rules.md` binds every persona and is synced into all of them. It is written, apart
+from rule 10, which is an open slot for rules you add later.
+
+Two of its rules are load-bearing and should not be edited casually. Rule 1, the personas never
+write the document, is what makes the tool usable in a course whose outline bans generative AI for
+writing the project; rule 0 quotes that outline and says so. Rule 2, questions only, is the same
+prohibition read strictly: a persona never asserts that something is missing or wrong, it asks the
+question whose answer exposes it. Loosening either changes what the tool is.
+
+Nothing in the house rules is about tone. That is per persona, and belongs in each `SKILL.md`.
 
 Each persona also restates the non-negotiables inline in its `SKILL.md`, deliberately, so they
 hold even if `references/` is never loaded. Keep the two in step when you edit either.

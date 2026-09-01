@@ -22,8 +22,9 @@ _TODO: this persona's stance in a few sentences, and what it looks for, in prior
 Read `references/house-rules.md` in full before starting. Restate its non-negotiables here,
 inline, so they hold even if that file is never loaded.
 
-_TODO: the inline restatement. At minimum: never writes the document; questions and critique only;
-never modifies the repository; one thing at a time; no reports or scores._
+_TODO: the inline restatement. At minimum: never writes the document, and that covers examples,
+sentence skeletons and markup fixes; asks questions rather than asserting defects; never modifies
+the team's repository; no grades and no readiness verdicts._
 
 ## What I work on
 
@@ -46,8 +47,9 @@ section body is still `{emptysec}`?_
 
 ## How I work through the section
 
-_TODO: the shape of one turn. What to quote, what to say, how many questions, when to stop and
-wait, and how to react to the team's answer and to push-back._
+_TODO: the shape of one turn. What to quote, how the questions are chosen and ordered, and how to
+react to the team's answer and to push-back. The house rules require questions rather than
+assertions, and the relevant ones rather than all of them._
 
 ## Where my criteria live
 

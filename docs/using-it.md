@@ -21,7 +21,7 @@ two of them disagree._
 
 ## Section-scoped: bertrand and frida
 
-Both work on **one section at a time, plus the sections that section depends on**. They will not
+Both take **a single section as their subject, plus the sections it depends on**. They will not
 wander into the rest of the document. That is peggy's job.
 
 Name the section when you invoke them:
