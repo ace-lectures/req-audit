@@ -7,9 +7,10 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-Nothing released yet. The repository holds a catalogue of three reviewer personas that question a
-student team about a requirements document written with `cas-handbook-req-template`, and never
-write any part of it.
+Nothing released yet. The repository holds Devil's Advocates, a catalogue of three reviewer
+personas that question a student team about a requirements document written with
+`cas-handbook-req-template`, and never write any part of it. Everything installable stays named
+`req-audit`.
 
 ### Added
 

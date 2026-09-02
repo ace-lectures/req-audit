@@ -3,6 +3,10 @@
 Three personas, one document, three different questions about it. This page says who they are,
 what each one is for, and why there are three rather than one.
 
+They are collectively the **Devil's Advocates**, and the old job title fits: an *advocatus
+diaboli* was appointed to argue against, never to make the case for. Arguing against is the whole
+of what they may do.
+
 **All three are clichés, drawn on purpose and drawn lightly.** The withering old professor, the
 exuberant artist, the archivist who has read every file and remembers all of them. Each one is a
 caricature with its tics turned up, and each one is named with a wink: two of them after people,

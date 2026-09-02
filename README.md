@@ -1,15 +1,18 @@
-# req-audit
+# Devil's Advocates
 
 Three reviewer personas that help a student team interrogate their own requirements document.
+*They ask. You write.*
 
 By [Sébastien Mosser](https://github.com/ace-lectures), Department of Computing and Software,
-McMaster University, for **CS/SE 3RA3**. The document under review is written with
+McMaster University, for **CS/SE 3RA3**. The document under
+review is written with
 [`cas-handbook-req-template`](https://github.com/ace-lectures/cas-handbook-req-template), the
 AsciiDoc implementation of the four books from Bertrand Meyer's *Handbook of Requirements and
 Business Analysis*.
 
 Each persona is an [Agent Skill](https://agentskills.io), so the same folder works on every major
-coding agent without modification.
+coding agent without modification. Everything you install and type is named `req-audit`,
+for requirements audit; Devil's Advocates is what the three of them are: auditors.
 
 ## They review. They do not write.
 
