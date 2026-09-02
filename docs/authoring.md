@@ -6,7 +6,7 @@
 shared/            single source of truth for anything every persona must agree on
 skills/<persona>/  one Agent Skill per persona, self-contained and installable on its own
 scripts/           sync.py (shared/ -> skills), validate.py (make check)
-docs/              per-agent install instructions, student-facing usage notes
+docs/              persona descriptions, student-facing usage notes, these notes
 .claude-plugin/    marketplace + plugin manifests, so the repo installs as one plugin
 ```
 
@@ -78,8 +78,8 @@ dimensions are yours to name.
 4. Restate the house rules inline in `What I will not do`. They must hold even if `references/`
    is never loaded.
 5. `make sync && make check`.
-6. Add a row to the persona tables in `README.md` and `docs/using-it.md`, and add the install
-   line to each file under `docs/install/`.
+6. Add a row to the persona tables in `README.md`, `docs/personas.md` and `docs/using-it.md`,
+   and add the persona to the `gh skill install` block in `README.md`.
 
 Nothing else needs touching. The plugin manifest points at the repo root, so a new folder under
 `skills/` is picked up automatically.
@@ -118,8 +118,8 @@ The upstream [`skills-ref`](https://github.com/agentskills/agentskills/tree/main
 library validates a `SKILL.md` against the spec directly, if you want a second opinion:
 `skills-ref validate ./skills/bertrand`. It is not wired in, so that nothing here needs installing.
 
-That last check is what keeps the personas portable. Agent-specific instructions belong in
-`docs/install/`, never in a skill body. The one deliberate exception is the
+That last check is what keeps the personas portable. Agent-specific instructions belong in the
+install section of `README.md`, never in a skill body. The one deliberate exception is the
 `disable-model-invocation: true` frontmatter key, which one agent honours and the others ignore.
 it makes students choose a persona explicitly rather than having one activate on its own.
 
