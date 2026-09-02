@@ -50,11 +50,11 @@ about your grade.
 
 ## The three reviewers
 
-| | Persona | What they ask | Why they exist | Subject |
-|---|---|---|---|---|
-| <img src="avatars/bertrand.jpeg" alt="" width="80"> | **bertrand** | Is this right? | Named for the textbook's author, and holds a section to the Handbook's quality properties: verifiable, unambiguous, justified, abstract. Blunt, hard on the text and never on the author. | One section, plus what it depends on |
-| <img src="avatars/frida.jpeg" alt="" width="80"> | **frida** | Is this the only thing you could have written? | Named for Frida Kahlo, and she is the creative facet. Documents fail by closing early more often than by being sloppy, so she finds the decisions written as facts, and names the axis without ever naming the alternative. | One section, plus what it depends on |
-| <img src="avatars/peggy.jpeg" alt="" width="80"> | **peggy** | Is this one document? | Named for the four books, Project, Environment, Goals, System. Contradictions, vocabulary drift and both sides of a boundary are invisible from inside one section, so someone has to read all twenty-six. | The complete document |
+| | Persona | What they ask | Why they exist |
+|---|---|---|---|
+| <img src="avatars/bertrand.jpeg" alt="" width="160"> | **bertrand** | Is this right? | Named for the textbook's author, and holds a section to the Handbook's quality properties: verifiable, unambiguous, justified, abstract. Blunt, hard on the text and never on the author. |
+| <img src="avatars/frida.jpeg" alt="" width="160"> | **frida** | Is this the only thing you could have written? | Named for Frida Kahlo, and she is the creative facet. Documents fail by closing early more often than by being sloppy, so she finds the decisions written as facts, and names the axis without ever naming the alternative. |
+| <img src="avatars/peggy.jpeg" alt="" width="160"> | **peggy** | Is this one document? | Named for the four books, Project, Environment, Goals, System. Contradictions, vocabulary drift and both sides of a boundary are invisible from inside one section, so someone has to read all twenty-six. |
 
 Two section reviewers who disagree with each other about what a section is, and one who reads
 across the whole. [Who they are, in full](docs/personas.md).
@@ -68,38 +68,19 @@ down by a form. The humour is light and the questions underneath it are not.
 
 ## Install
 
-Pick one of the two routes. Both install all three personas.
-
-### GitHub CLI, any agent
-
-Requires `gh` v2.90.0 or later. Replace `<your-agent>` with `claude-code`, `codex`, `cursor`,
-`gemini-cli` or `github-copilot`:
+Requires `gh` v2.90.0 or later. One command, whichever agent you use.
 
 ```
-gh skill install ace-lectures/req-audit bertrand --agent <your-agent> --scope user
-gh skill install ace-lectures/req-audit frida    --agent <your-agent> --scope user
-gh skill install ace-lectures/req-audit peggy    --agent <your-agent> --scope user
+gh skill install ace-lectures/req-audit
 ```
 
-`--scope user` makes the personas available in every project. Use `--scope project` from inside
-your document repository instead, and your teammates get them by cloning.
+That is the whole command. It lists the three personas and asks which one you want, which agent to
+install it for, and whether to install at **user** scope, available in every project, or
+**project** scope, inside your document repository so your teammates get it by cloning. Run it
+once per persona.
 
-### Claude Code plugin marketplace
-
-From any directory:
-
-```
-/plugin marketplace add ace-lectures/req-audit
-/plugin install req-audit@ace-lectures
-```
-
-The personas are then `/req-audit:bertrand`, `/req-audit:frida` and `/req-audit:peggy`. Update
-later with `/plugin marketplace update ace-lectures`.
-
-### Check it worked
-
-List your agent's skills. All three should appear, and none of them activates on its own: you
-always choose the persona.
+To check it worked, list your agent's skills. All three should appear, and none of them activates
+on its own: you always choose the persona.
 
 ## Use them
 

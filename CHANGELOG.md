@@ -33,10 +33,8 @@ personas that question a student team about a requirements document written with
   whole-document checks in seven dimensions. All of it built on `shared/house-rules.md`, whose
   first rule is that a persona never writes the document, restated inline in every persona so it
   holds even if nothing else loads.
-- Installation in two routes, both in `README.md`: `gh skill install` for any of Claude Code,
-  Codex, Cursor, Gemini CLI and GitHub Copilot, or the Claude Code plugin marketplace
-  (`/plugin marketplace add ace-lectures/req-audit`). One skill folder works everywhere without
-  modification.
+- Installation with one command, `gh skill install ace-lectures/req-audit`, which asks for the
+  persona, the agent and the scope. One skill folder works on every agent without modification.
 - Documentation for the two audiences: `docs/personas.md` on who the three reviewers are and why
   there are three, `docs/using-it.md` on running a session, and `docs/authoring.md` for
   instructors adding or editing a persona.

@@ -78,8 +78,9 @@ dimensions are yours to name.
 4. Restate the house rules inline in `What I will not do`. They must hold even if `references/`
    is never loaded.
 5. `make sync && make check`.
-6. Add a row to the persona tables in `README.md`, `docs/personas.md` and `docs/using-it.md`,
-   and add the persona to the `gh skill install` block in `README.md`.
+6. Add a row to the persona tables in `README.md`, `docs/personas.md` and `docs/using-it.md`.
+   The install instructions need no change: `gh skill install ace-lectures/req-audit` lists
+   whatever the repository contains, and the plugin ships every folder under `skills/`.
 
 Nothing else needs touching. The plugin manifest points at the repo root, so a new folder under
 `skills/` is picked up automatically.
